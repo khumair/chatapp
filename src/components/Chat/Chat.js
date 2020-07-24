@@ -52,7 +52,7 @@ const Chat = ({ location }) => {
         <div className="outerContainer">
             <div className="container">
                 <InfoBar room={room}> </InfoBar>
-                <Messages message={message} name={name}> </Messages>
+                <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}> </Input>
             </div>
         </div>
