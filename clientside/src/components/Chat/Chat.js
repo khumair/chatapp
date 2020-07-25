@@ -5,6 +5,7 @@ import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import './Chat.css';
 import Messages from '../Messages/Messages';
+import OnlineMember from '../OnlineMembers/OnlineMember'
 let socket;
 
 
@@ -14,7 +15,7 @@ const Chat = ({ location }) => {
     const [room, setRoom] = useState('');
     const [message, setMessage] = useState([]);
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'localhost:5000';
+    const ENDPOINT = 'https://chat-app-khawaja.herokuapp.com/';
 
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}> </Input>
             </div>
+            <OnlineMember users={users}></OnlineMember>
         </div>
     )
 }

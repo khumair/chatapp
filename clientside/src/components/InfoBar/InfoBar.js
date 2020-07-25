@@ -1,17 +1,18 @@
 import React from 'react';
+import closeIcon from '../../icons/closeIcon.png';
+import onlineIcon from '../../icons/onlineIcon.png';
+
 import './InfoBar.css';
-import '../../icons/closeIcon.png';
-import '../../icons/onlineIcon.png';
 
 const InfoBar = ({ room }) => (
     <div className="infoBar">
         <div className="leftInnerContainer">
-            <a href="/" > <img src="onlineIcon" alt=" online" /></a>
+            <img className="onlineIcon" src={onlineIcon} alt=" online" />
             <h3> {room}</h3>
         </div>
 
         <div className=" rightinnerContainer " >
-            <a href="/" > <img src="closeIcon" alt="close" /></a>
+            <a href="/" > <img src={closeIcon} alt="close" /></a>
         </div>
     </div>
 )
