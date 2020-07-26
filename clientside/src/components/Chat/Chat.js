@@ -13,6 +13,7 @@ let socket;
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [users, setUsers] = useState('');
     const [message, setMessage] = useState([]);
     const [messages, setMessages] = useState([]);
     const ENDPOINT = 'https://chat-app-khawaja.herokuapp.com/';
@@ -25,8 +26,9 @@ const Chat = ({ location }) => {
 
         setName(name);
         setRoom(room);
-        socket.emit('join', { name, room }, () => {
 
+
+        socket.emit('join', { name, room }, () => {
         });
         return () => {
             socket.emit('disconnect');
@@ -36,9 +38,13 @@ const Chat = ({ location }) => {
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message]);
-        })
+        });
 
-    }, [messages]);
+
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+        });
+    }, []);
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -56,7 +62,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}> </Input>
             </div>
-            <OnlineMember users={users}></OnlineMember>
+            <OnlineMember users={users} />
         </div>
     )
 }
